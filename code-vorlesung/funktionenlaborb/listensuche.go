@@ -71,3 +71,13 @@ type Person struct {
 	Name string
 	Age  int
 }
+
+func FilterByAgeLess(list []Person, maxAge int) []Person {
+	result := []Person{}
+	for _, p := range list {
+		if p.Age <= maxAge {
+			result = append(result, p)
+		}
+	}
+	return result
+}
