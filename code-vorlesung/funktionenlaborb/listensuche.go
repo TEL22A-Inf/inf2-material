@@ -1,11 +1,16 @@
 package funktionenlaborb
 
+import (
+	"sort"
+	"strings"
+)
+
 func isLess5(i int) bool {
 	return i < 5
 }
 
 func FindFirstLess5(list []int) int {
-	return FindFirst(list, isLess5)
+	return FindFirstInt(list, isLess5)
 	/*
 		for i, v := range list {
 			if isLess5(v) {
@@ -22,7 +27,7 @@ func FindFirstEven(list []int) int {
 		return v%2 == 0
 	}
 
-	return FindFirst(list, isEven)
+	return FindFirstInt(list, isEven)
 }
 
 func FindFirstBetween2and15(list []int) int {
@@ -45,7 +50,29 @@ func FindFirstBetween(list []int, a, b int) int {
 	)
 }
 
-func FindFirst(list []int, predicate func(int) bool) int {
+func FindFirst[T comparable](list []T, predicate func(T) bool) int {
+	for i, v := range list {
+		if predicate(v) {
+			return i
+		}
+	}
+	return -1
+}
+
+func FindFirstInt(list []int, predicate func(int) bool) int {
+	return FindFirst(list, predicate)
+}
+
+func FindFirstString(list []string, predicate func(string) bool) int {
+	for i, v := range list {
+		if predicate(v) {
+			return i
+		}
+	}
+	return -1
+}
+
+func FindFirstByte(list []byte, predicate func(byte) bool) int {
 	for i, v := range list {
 		if predicate(v) {
 			return i
@@ -80,4 +107,11 @@ func FilterByAgeLess(list []Person, maxAge int) []Person {
 		}
 	}
 	return result
+}
+
+func MySort(list []Person) {
+	comp := func(i, j int) bool {
+		return strings.ToLower(list[i].Name) > strings.ToLower(list[j].Name)
+	}
+	sort.Slice(list, comp)
 }
