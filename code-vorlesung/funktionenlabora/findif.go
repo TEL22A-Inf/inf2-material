@@ -7,7 +7,7 @@ func Greater50(v int) bool {
 // FindIfGreater50 erwartet eine Liste und liefert die Position des ersten Elements,
 // das größer als 50 ist.
 func FindIfGreater50(list []int) int {
-	return FindIf(list, Greater50)
+	return FindIf_int(list, Greater50)
 	/*
 		for i, v := range list {
 			if v > 50 {
@@ -25,7 +25,7 @@ func FindIfOdd(list []int) int {
 	isOdd := func(v int) bool {
 		return v%2 != 0
 	}
-	return FindIf(list, isOdd)
+	return FindIf_int(list, isOdd)
 	/*
 		for i, v := range list {
 			if v%2 != 0 {
@@ -40,7 +40,7 @@ func FindIfOdd(list []int) int {
 // das zwischen 20 und 50 liegt.
 func FindIfBetween20And50(list []int) int {
 
-	return FindIf(
+	return FindIf_int(
 		list,
 		func(v int) bool { return v > 20 && v < 50 },
 	)
@@ -60,7 +60,7 @@ func FindIfBetween20And50(list []int) int {
 // das zwischen a und b liegt.
 func FindIfBetween(list []int, a, b int) int {
 
-	return FindIf(
+	return FindIf_int(
 		list,
 		func(v int) bool { return v > a && v < b },
 	)
@@ -73,8 +73,8 @@ func p(v int) bool {
 }
 */
 
-// FindIf
-func FindIf(list []int, p func(int) bool) int {
+// FindIf_int
+func FindIf_int(list []int, p func(int) bool) int {
 	for i, v := range list {
 		if p(v) {
 			return i
